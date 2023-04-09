@@ -30,11 +30,6 @@
   opacity: 0.6;
 }
 
-.back {
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
 .bold {
   font-weight: bold;
 }
@@ -164,4 +159,10 @@
 
 .avatar {
   border-radius: 50% 50%;
+}
+
+.back {
+  display: block;
+  text-align: center;
+  margin: 50px auto;
 }

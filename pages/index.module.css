@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 80px 30px;
+  gap: 80px 40px;
 }
 
 .post {

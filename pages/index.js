@@ -16,8 +16,9 @@ export default function Home({ posts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header />
+
       <main className={styles.container}>
-        <Header />
         <div className={styles.main}>
           <div className={styles.posts}>
             {posts
@@ -49,9 +50,9 @@ export default function Home({ posts }) {
               })}
           </div>
         </div>
-
-        <Footer />
       </main>
+
+      <Footer />
     </div>
   );
 }

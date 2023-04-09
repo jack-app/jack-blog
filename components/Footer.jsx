@@ -11,9 +11,15 @@ export function Footer() {
         <Image src="/logo.png" width={100} height={70}></Image>
       </div>
       <div className={styles.links}>
-        <MdOutlineWeb size={40}></MdOutlineWeb>
-        <BsTwitter size={36}></BsTwitter>
-        <MdEmail size={36}></MdEmail>
+        <a href="https://jack-website.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <MdOutlineWeb size={40} color="#fff"></MdOutlineWeb>
+        </a>
+        <a href="https://twitter.com/jackapp_tmy" target="_blank" rel="noopener noreferrer">
+          <BsTwitter size={36} color="#fff"></BsTwitter>
+        </a>
+        <a href="mailto:jack.app.tmy@gmail.com">
+          <MdEmail size={36} color="#fff"></MdEmail>
+        </a>
       </div>
       <div className={styles.copy}>&copy;jack 2023</div>
     </footer>
