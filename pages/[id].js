@@ -206,7 +206,6 @@ export default function Post({ page, blocks }) {
       <Seo
         pageTitle={"jack blog"}
         pageDescription={page.properties.Name.title[0].plain_text}
-        pagePath={`https://jackun-blog.vercel.app/${page.id}`}
         pageImg={page.cover ? page.cover.external.url : "/home.png"}
         pageImgWidth={1200}
         pageImgHeight={600}

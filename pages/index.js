@@ -15,7 +15,6 @@ export default function Home({ posts }) {
       <Seo
         pageTitle={"jack blog"}
         pageDescription={"アプリ開発団体jackのメンバーズブログ"}
-        pagePath={`https://jackun-blog.vercel.app/`}
         pageImg={"/home.png"}
         pageImgWidth={1200}
         pageImgHeight={600}
