@@ -6,6 +6,7 @@ import { databaseId } from "./index.js";
 import styles from "./post.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import Image from "next/image";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -207,13 +208,27 @@ export default function Post({ page, blocks }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header></Header>
+      <Header />
 
-      <article className={styles.container}>
-        <h1 className={styles.name}>
+      <div className={styles.titles}>
+        <div className={styles.title}>
           <Text text={page.properties.Name.title} />
-        </h1>
-        <section>
+        </div>
+        <div className="author">
+          <img
+            src={page.properties.Writer.created_by.avatar_url}
+            className={styles.avatar}
+            width={30}
+            height={30}
+          />
+          <div>{page.properties.Writer.created_by.name}</div>
+        </div>
+      </div>
+      <article className={styles.container}>
+        <div className={styles.mainImage}>
+          <Image src={page.cover.external.url} fill />
+        </div>
+        <section className={styles.body}>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}

@@ -18,7 +18,7 @@ export default function Home({ posts }) {
       </Head>
 
       <main className={styles.container}>
-        <Header></Header>
+        <Header />
         <div className={styles.main}>
           <div className={styles.posts}>
             {posts
@@ -33,7 +33,7 @@ export default function Home({ posts }) {
                 return (
                   <div className={styles.post}>
                     <Link href={`/${post.id}`} key={post.id}>
-                      <Image src={post.cover.external.url} width={250} height={200}></Image>
+                      <Image src={post.cover.external.url} width={250} height={200} />
                       <div className={styles.details}>
                         <div className={styles.postTitle}>
                           <Text text={post.properties.Name.title} />
@@ -47,7 +47,7 @@ export default function Home({ posts }) {
           </div>
         </div>
 
-        <Footer></Footer>
+        <Footer />
       </main>
     </div>
   );
