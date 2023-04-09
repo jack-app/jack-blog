@@ -5,6 +5,7 @@ import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
 import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -221,6 +222,8 @@ export default function Post({ page, blocks }) {
           </Link>
         </section>
       </article>
+
+      <Footer />
     </div>
   );
 }
