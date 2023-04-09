@@ -32,12 +32,18 @@ export default function Home({ posts }) {
                 return (
                   <Link href={`/${post.id}`} key={post.id}>
                     <div className={styles.post}>
-                      <img
-                        src={post.cover.external.url}
-                        width={250}
-                        height={200}
-                        className={styles.postImage}
-                      />
+                      {post.cover ? (
+                        <img
+                          src={post.cover.external.url}
+                          width={250}
+                          height={200}
+                          className={styles.postImage}
+                        />
+                      ) : (
+                        <div className={styles.defaultImage}>
+                          <img src="/OrangeLogo.png" width={200} height={160} />
+                        </div>
+                      )}
                       <div className={styles.details}>
                         <div className={styles.postTitle}>
                           <Text text={post.properties.Name.title} />

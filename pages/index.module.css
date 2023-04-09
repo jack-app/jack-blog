@@ -53,6 +53,14 @@
   border-radius: 5px 5px 0 0;
 }
 
+.defaultImage {
+  width: 250px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .postTitle {
   font-size: 18px;
   color: #000;
