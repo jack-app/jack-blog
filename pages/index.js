@@ -4,6 +4,9 @@ import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
 import Image from "next/image";
 import styles from "./index.module.css";
+import { MdOutlineWeb } from "react-icons/md";
+import { BsTwitter } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -24,6 +27,7 @@ export default function Home({ posts }) {
           <div className={styles.overlay}></div>
           <Image src="/HeaderBackground.png" fill></Image>
         </header>
+
         <h2 className={styles.heading}>All Posts</h2>
         <ol className={styles.posts}>
           {posts.map((post) => {
@@ -46,6 +50,18 @@ export default function Home({ posts }) {
             );
           })}
         </ol>
+
+        <footer className={styles.footer}>
+          <div className={styles.logo}>
+            <Image src="/logo.png" width={100} height={70}></Image>
+          </div>
+          <div className={styles.links}>
+            <MdOutlineWeb size={40}></MdOutlineWeb>
+            <BsTwitter size={36}></BsTwitter>
+            <MdEmail size={36}></MdEmail>
+          </div>
+          <div className={styles.copy}>&copy;jack 2023</div>
+        </footer>
       </main>
     </div>
   );
