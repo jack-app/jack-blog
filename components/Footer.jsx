@@ -17,7 +17,7 @@ export function Footer() {
         <a href="https://twitter.com/jackapp_tmy" target="_blank" rel="noopener noreferrer">
           <BsTwitter size={36} color="#fff"></BsTwitter>
         </a>
-        <a href="mailto:jack.app.tmy@gmail.com">
+        <a href="mailto:jack.app.tmy@gmail.com" target="_blank" rel="noopener noreferrer">
           <MdEmail size={36} color="#fff"></MdEmail>
         </a>
       </div>

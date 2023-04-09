@@ -121,19 +121,6 @@
   border-radius: 12px;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  .code,
-  .table,
-  .pre {
-    background-color: rgb(15, 8, 28);
-  }
-  .file:hover {
-    background: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    border-radius: 2px;
-  }
-} */
-
 .titles {
   text-align: center;
   max-width: 1000px;
@@ -178,5 +165,15 @@
 
   .container {
     border-radius: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: #383838;
+  }
+
+  .back {
+    color: #fff;
   }
 }

@@ -62,3 +62,17 @@
   font-size: 14px;
   color: #626262;
 }
+
+@media (prefers-color-scheme: dark) {
+  .post {
+    background-color: #383838;
+  }
+
+  .postTitle {
+    color: #fff;
+  }
+
+  .postDescription {
+    color: #b9b9b9;
+  }
+}
