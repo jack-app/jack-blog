@@ -32,3 +32,15 @@
   height: 100%;
   z-index: 10;
 }
+
+@media screen and (max-width: 700px) {
+  .mainTitle {
+    font-size: 24px;
+    padding-bottom: 8px;
+    letter-spacing: 2px;
+  }
+
+  .subTitle {
+    font-size: 16px;
+  }
+}

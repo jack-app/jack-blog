@@ -9,7 +9,7 @@
 }
 
 .body {
-  padding: 40px;
+  padding: 30px 40px;
 }
 
 .container h1 {
@@ -169,4 +169,14 @@
   display: block;
   text-align: center;
   margin: 50px auto;
+}
+
+@media screen and (max-width: 700px) {
+  .mainImage {
+    border-radius: 0;
+  }
+
+  .container {
+    border-radius: 0;
+  }
 }
