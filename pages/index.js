@@ -2,7 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
-import Image from "next/image";
 import styles from "./index.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -33,7 +32,12 @@ export default function Home({ posts }) {
                 return (
                   <div className={styles.post}>
                     <Link href={`/${post.id}`} key={post.id}>
-                      <Image src={post.cover.external.url} width={250} height={200} />
+                      <img
+                        src={post.cover.external.url}
+                        width={250}
+                        height={200}
+                        className={styles.postImage}
+                      />
                       <div className={styles.details}>
                         <div className={styles.postTitle}>
                           <Text text={post.properties.Name.title} />
