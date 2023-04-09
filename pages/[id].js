@@ -225,9 +225,7 @@ export default function Post({ page, blocks }) {
         </div>
       </div>
       <article className={styles.container}>
-        <div className={styles.mainImage}>
-          <Image src={page.cover.external.url} fill />
-        </div>
+        <img src={page.cover.external.url} className={styles.mainImage} />
         <section className={styles.body}>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>

@@ -23,15 +23,14 @@ export default function Home({ posts }) {
             {posts
               .filter((post) => post.properties.Publish.checkbox)
               .map((post) => {
-                console.log(post);
                 const date = new Date(post.last_edited_time).toLocaleString("en-US", {
                   month: "short",
                   day: "2-digit",
                   year: "numeric",
                 });
                 return (
-                  <div className={styles.post}>
-                    <Link href={`/${post.id}`} key={post.id}>
+                  <Link href={`/${post.id}`} key={post.id}>
+                    <div className={styles.post}>
                       <img
                         src={post.cover.external.url}
                         width={250}
@@ -44,8 +43,8 @@ export default function Home({ posts }) {
                         </div>
                         <p className={styles.postDescription}>{date}</p>
                       </div>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 );
               })}
           </div>

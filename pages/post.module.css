@@ -151,15 +151,15 @@
 }
 
 .mainImage {
-  position: relative;
   width: 100%;
-  aspect-ratio: 3 /1;
+  aspect-ratio: 5 / 3;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .author {
-  float: left;
+  display: flex;
 }
 
 .avatar {
