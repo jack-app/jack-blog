@@ -214,7 +214,7 @@ export default function Post({ page, blocks }) {
         <div className={styles.title}>
           <Text text={page.properties.Name.title} />
         </div>
-        <div className="author">
+        <div className={styles.author}>
           <img
             src={page.properties.Writer.created_by.avatar_url}
             className={styles.avatar}
