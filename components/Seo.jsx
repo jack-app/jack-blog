@@ -9,7 +9,7 @@ const Seo = ({ pageTitle, pageDescription, pagePath, pageImg, pageImgWidth, page
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
   const description = pageDescription ? pageDescription : defaultDescription;
   const url = pagePath ? pagePath : defaultUrl;
-  const imgUrl = pageImg ? imgUrl : defaultImgUrl;
+  const imgUrl = pageImg ? pageImg : defaultImgUrl;
   const imgWidth = pageImgWidth ? pageImgWidth : 1280;
   const imgHeight = pageImgHeight ? pageImgHeight : 640;
 
