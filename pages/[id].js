@@ -4,6 +4,7 @@ import { getDatabase, getPage, getBlocks } from "../lib/notion";
 import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
+import { Header } from "../components/Header";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -116,8 +117,7 @@ const renderBlock = (block) => {
         </div>
       );
     case "image":
-      const src =
-        value.type === "external" ? value.external.url : value.file.url;
+      const src = value.type === "external" ? value.external.url : value.file.url;
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
         <figure>
@@ -138,8 +138,7 @@ const renderBlock = (block) => {
         </pre>
       );
     case "file":
-      const src_file =
-        value.type === "external" ? value.external.url : value.file.url;
+      const src_file = value.type === "external" ? value.external.url : value.file.url;
       const splitSourceArray = src_file.split("/");
       const lastElementInArray = splitSourceArray[splitSourceArray.length - 1];
       const caption_file = value.caption ? value.caption[0]?.plain_text : "";
@@ -166,8 +165,7 @@ const renderBlock = (block) => {
         <table className={styles.table}>
           <tbody>
             {block.children?.map((child, i) => {
-              const RowElement =
-                value.has_column_header && i == 0 ? "th" : "td";
+              const RowElement = value.has_column_header && i == 0 ? "th" : "td";
               return (
                 <tr key={child.id}>
                   {child.table_row?.cells?.map((cell, i) => {
@@ -185,11 +183,7 @@ const renderBlock = (block) => {
       );
     }
     case "column_list": {
-      return (
-        <div className={styles.row}>
-          {block.children.map((block) => renderBlock(block))}
-        </div>
-      );
+      return <div className={styles.row}>{block.children.map((block) => renderBlock(block))}</div>;
     }
     case "column": {
       return <div>{block.children.map((child) => renderBlock(child))}</div>;
@@ -211,6 +205,8 @@ export default function Post({ page, blocks }) {
         <title>{page.properties.Name.title[0].plain_text}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Header></Header>
 
       <article className={styles.container}>
         <h1 className={styles.name}>

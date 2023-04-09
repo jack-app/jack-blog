@@ -7,6 +7,7 @@ import styles from "./index.module.css";
 import { MdOutlineWeb } from "react-icons/md";
 import { BsTwitter } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
+import { Header } from "../components/Header";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -19,15 +20,7 @@ export default function Home({ posts }) {
       </Head>
 
       <main className={styles.container}>
-        <header className={styles.header}>
-          <div className={styles.titles}>
-            <div className={styles.mainTitle}>jack blog</div>
-            <div className={styles.subTitle}>アプリ開発団体jack メンバーズブログ</div>
-          </div>
-          <div className={styles.overlay}></div>
-          <Image src="/HeaderBackground.png" fill></Image>
-        </header>
-
+        <Header></Header>
         <div className={styles.main}>
           <div className={styles.posts}>
             {posts

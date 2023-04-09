@@ -124,7 +124,7 @@
   border-radius: 12px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .code,
   .table,
   .pre {
@@ -135,4 +135,4 @@
     cursor: pointer;
     border-radius: 2px;
   }
-}
+} */
