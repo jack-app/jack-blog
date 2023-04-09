@@ -1,5 +1,6 @@
 .main {
-  margin: 80px 0;
+  margin: 80px auto;
+  max-width: 80%;
 }
 
 .posts {
@@ -82,5 +83,9 @@
 
   .postDescription {
     color: #b9b9b9;
+  }
+
+  .defaultImage {
+    background-color: #efefef;
   }
 }

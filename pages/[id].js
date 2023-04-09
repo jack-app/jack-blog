@@ -234,7 +234,7 @@ export default function Post({ page, blocks }) {
       </article>
 
       <Link href="/" className={styles.back}>
-        ← Go home
+        ← home
       </Link>
 
       <Footer />
