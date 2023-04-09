@@ -3,12 +3,11 @@ import Head from "next/head";
 const Seo = ({ pageTitle, pageDescription, pagePath, pageImg, pageImgWidth, pageImgHeight }) => {
   const defaultTitle = "jack blog";
   const defaultDescription = "アプリ開発団体jackのメンバーズブログ";
-  const defaultUrl = "https://jackun-blog.vercel.app/";
   const defaultImgUrl = "/home.png";
 
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
   const description = pageDescription ? pageDescription : defaultDescription;
-  const url = pagePath ? pagePath : defaultUrl;
+  const url = pagePath;
   const imgUrl = pageImg ? pageImg : defaultImgUrl;
   const imgWidth = pageImgWidth ? pageImgWidth : 1280;
   const imgHeight = pageImgHeight ? pageImgHeight : 640;
