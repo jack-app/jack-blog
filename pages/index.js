@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
-import styles from "./index.module.css";
+import styles from "../styles/index.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Seo from "../components/Seo";
