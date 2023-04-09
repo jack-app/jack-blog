@@ -30,27 +30,29 @@ export default function Home({ posts }) {
 
         <div className={styles.main}>
           <div className={styles.posts}>
-            {posts.map((post) => {
-              console.log(post);
-              const date = new Date(post.last_edited_time).toLocaleString("en-US", {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              });
-              return (
-                <div className={styles.post}>
-                  <Link href={`/${post.id}`} key={post.id}>
-                    <Image src={post.cover.external.url} width={250} height={200}></Image>
-                    <div className={styles.details}>
-                      <div className={styles.postTitle}>
-                        <Text text={post.properties.Name.title} />
+            {posts
+              .filter((post) => post.properties.Publish.checkbox)
+              .map((post) => {
+                console.log(post);
+                const date = new Date(post.last_edited_time).toLocaleString("en-US", {
+                  month: "short",
+                  day: "2-digit",
+                  year: "numeric",
+                });
+                return (
+                  <div className={styles.post}>
+                    <Link href={`/${post.id}`} key={post.id}>
+                      <Image src={post.cover.external.url} width={250} height={200}></Image>
+                      <div className={styles.details}>
+                        <div className={styles.postTitle}>
+                          <Text text={post.properties.Name.title} />
+                        </div>
+                        <p className={styles.postDescription}>{date}</p>
                       </div>
-                      <p className={styles.postDescription}>{date}</p>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
+                    </Link>
+                  </div>
+                );
+              })}
           </div>
         </div>
 
