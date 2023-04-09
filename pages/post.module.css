@@ -176,4 +176,8 @@
   .back {
     color: #fff;
   }
+
+  .code_block {
+    color: #000;
+  }
 }
