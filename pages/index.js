@@ -28,28 +28,31 @@ export default function Home({ posts }) {
           <Image src="/HeaderBackground.png" fill></Image>
         </header>
 
-        <h2 className={styles.heading}>All Posts</h2>
-        <ol className={styles.posts}>
-          {posts.map((post) => {
-            const date = new Date(post.last_edited_time).toLocaleString("en-US", {
-              month: "short",
-              day: "2-digit",
-              year: "numeric",
-            });
-            return (
-              <li key={post.id} className={styles.post}>
-                <h3 className={styles.postTitle}>
-                  <Link href={`/${post.id}`}>
-                    <Text text={post.properties.Name.title} />
+        <div className={styles.main}>
+          <div className={styles.posts}>
+            {posts.map((post) => {
+              console.log(post);
+              const date = new Date(post.last_edited_time).toLocaleString("en-US", {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              });
+              return (
+                <div className={styles.post}>
+                  <Link href={`/${post.id}`} key={post.id}>
+                    <Image src={post.cover.external.url} width={250} height={200}></Image>
+                    <div className={styles.details}>
+                      <div className={styles.postTitle}>
+                        <Text text={post.properties.Name.title} />
+                      </div>
+                      <p className={styles.postDescription}>{date}</p>
+                    </div>
                   </Link>
-                </h3>
-
-                <p className={styles.postDescription}>{date}</p>
-                <Link href={`/${post.id}`}>Read post →</Link>
-              </li>
-            );
-          })}
-        </ol>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         <footer className={styles.footer}>
           <div className={styles.logo}>
