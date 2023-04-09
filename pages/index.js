@@ -5,16 +5,21 @@ import { Text } from "./[id].js";
 import styles from "./index.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import Seo from "../components/Seo";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
   return (
     <div>
-      <Head>
-        <title>jack blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        pageTitle={"jack blog"}
+        pageDescription={"アプリ開発団体jackのメンバーズブログ"}
+        pagePath={`https://jackun-blog.vercel.app/`}
+        pageImg={"/home.png"}
+        pageImgWidth={1200}
+        pageImgHeight={600}
+      />
 
       <Header />
 

@@ -6,7 +6,7 @@ import { databaseId } from "./index.js";
 import styles from "./post.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import Image from "next/image";
+import Seo from "../components/Seo";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -201,12 +201,17 @@ export default function Post({ page, blocks }) {
   if (!page || !blocks) {
     return <div />;
   }
+
   return (
     <div>
-      <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        pageTitle={"jack blog"}
+        pageDescription={"アプリ開発団体jackのメンバーズブログ"}
+        pagePath={`https://jackun-blog.vercel.app/${page.id}`}
+        pageImg={page.cover ? page.cover.external.url : "/home.png"}
+        pageImgWidth={1200}
+        pageImgHeight={600}
+      />
 
       <Header />
 
