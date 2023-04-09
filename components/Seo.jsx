@@ -25,11 +25,6 @@ const Seo = ({ pageTitle, pageDescription, pagePath, pageImg, pageImgWidth, page
       <meta property="og:image" content={imgUrl} />
       <meta property="og:image:width" content={String(imgWidth)} />
       <meta property="og:image:height" content={String(imgHeight)} />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;display=swap"
-        rel="stylesheet"
-      />
       <link rel="canonical" href={url} />
     </Head>
   );
