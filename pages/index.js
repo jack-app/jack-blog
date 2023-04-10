@@ -33,16 +33,14 @@ export default function Home({ posts }) {
                   day: "2-digit",
                   year: "numeric",
                 });
+
+                const src =
+                  post.cover.type === "external" ? post.cover.external.url : post.cover.file.url;
                 return (
                   <Link href={`/${post.id}`} key={post.id}>
                     <div className={styles.post}>
                       {post.cover ? (
-                        <img
-                          src={post.cover.external.url}
-                          width={250}
-                          height={200}
-                          className={styles.postImage}
-                        />
+                        <img src={src} width={250} height={200} className={styles.postImage} />
                       ) : (
                         <div className={styles.defaultImage}>
                           <img src="/OrangeLogo.png" width={200} height={160} />

@@ -201,12 +201,14 @@ export default function Post({ page, blocks }) {
     return <div />;
   }
 
+  const src = page.cover.type === "external" ? page.cover.external.url : page.cover.file.url;
+
   return (
     <div>
       <Seo
         pageTitle={"jack blog"}
         pageDescription={page.properties.Name.title[0].plain_text}
-        pageImg={page.cover ? page.cover.external.url : "/home.png"}
+        pageImg={src ? src : "/home.png"}
         pageImgWidth={1200}
         pageImgHeight={600}
       />
@@ -228,7 +230,7 @@ export default function Post({ page, blocks }) {
         </div>
       </div>
       <article className={styles.container}>
-        {page.cover ? <img src={page.cover.external.url} className={styles.mainImage} /> : null}
+        {page.cover ? <img src={src} className={styles.mainImage} /> : null}
         <section className={styles.body}>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
