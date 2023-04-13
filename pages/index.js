@@ -6,6 +6,7 @@ import styles from "../styles/index.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Seo from "../components/Seo";
+import fs from "fs";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -25,37 +26,37 @@ export default function Home({ posts }) {
       <main className={styles.container}>
         <div className={styles.main}>
           <div className={styles.posts}>
-            {posts
-              .filter((post) => post.properties.Publish.checkbox)
-              .map((post) => {
-                const date = new Date(post.last_edited_time).toLocaleString("en-US", {
-                  month: "short",
-                  day: "2-digit",
-                  year: "numeric",
-                });
+            {posts.map((post) => {
+              const date = new Date(post.last_edited_time).toLocaleString("en-US", {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              });
 
-                const src =
-                  post.cover.type === "external" ? post.cover.external.url : post.cover.file.url;
-                return (
-                  <Link href={`/${post.id}`} key={post.id}>
-                    <div className={styles.post}>
-                      {post.cover ? (
-                        <img src={src} width={250} height={200} className={styles.postImage} />
-                      ) : (
-                        <div className={styles.defaultImage}>
-                          <img src="/OrangeLogo.png" width={200} height={160} />
-                        </div>
-                      )}
-                      <div className={styles.details}>
-                        <div className={styles.postTitle}>
-                          <Text text={post.properties.Name.title} />
-                        </div>
-                        <p className={styles.postDescription}>{date}</p>
+              console.log(post.cover);
+              const src =
+                post.cover.type === "external" ? post.cover.external.url : post.cover.file.url;
+
+              return (
+                <Link href={`/${post.id}`} key={post.id}>
+                  <div className={styles.post}>
+                    {post.cover ? (
+                      <img src={src} width={250} height={200} className={styles.postImage} />
+                    ) : (
+                      <div className={styles.defaultImage}>
+                        <img src="/OrangeLogo.png" width={200} height={160} />
                       </div>
+                    )}
+                    <div className={styles.details}>
+                      <div className={styles.postTitle}>
+                        <Text text={post.properties.Name.title} />
+                      </div>
+                      <p className={styles.postDescription}>{date}</p>
                     </div>
-                  </Link>
-                );
-              })}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </main>
@@ -68,9 +69,37 @@ export default function Home({ posts }) {
 export const getStaticProps = async () => {
   const database = await getDatabase(databaseId);
 
+  const posts = await Promise.all(
+    database
+      .filter((post) => post.properties.Publish.checkbox)
+      .map(async (post) => {
+        // 期限付きの画像を取得してpublicディレクトリに保存する
+        // 参考: https://github.com/0si43/shetommy.com/pull/36/files
+        if (post.cover.type === "file") {
+          const path = `public/${post.id}/`;
+          const cover = `${path}/cover.png`;
+
+          if (!fs.existsSync(path)) {
+            fs.mkdirSync(path);
+          }
+
+          const src = await fetch(post.cover.file.url).then((r) => r.blob());
+          const binary = await src.arrayBuffer();
+          const buffer = Buffer.from(binary);
+
+          await fs.promises.writeFile(cover, buffer);
+
+          post.cover.file.url = `/${post.id}/cover.png`;
+          return post;
+        }
+
+        return post;
+      })
+  );
+
   return {
     props: {
-      posts: database,
+      posts: posts,
     },
     revalidate: 1,
   };
