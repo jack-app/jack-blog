@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/link";
 import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
@@ -6,7 +5,7 @@ import styles from "../styles/index.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Seo from "../components/Seo";
-import fs from "fs";
+import createImage from "../utils/createImage";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -73,23 +72,9 @@ export const getStaticProps = async () => {
     database
       .filter((post) => post.properties.Publish.checkbox)
       .map(async (post) => {
-        // 期限付きの画像を取得してpublicディレクトリに保存する
-        // 参考: https://github.com/0si43/shetommy.com/pull/36/files
         if (post.cover.type === "file") {
-          const path = `public/${post.id}/`;
-          const cover = `${path}/cover.png`;
-
-          if (!fs.existsSync(path)) {
-            fs.mkdirSync(path);
-          }
-
-          const src = await fetch(post.cover.file.url).then((r) => r.blob());
-          const binary = await src.arrayBuffer();
-          const buffer = Buffer.from(binary);
-
-          await fs.promises.writeFile(cover, buffer);
-
-          post.cover.file.url = `/${post.id}/cover.png`;
+          const newUrl = await createImage(post.id, "cover", post.cover.file.url);
+          post.cover.file.url = newUrl;
           return post;
         }
 
