@@ -6,6 +6,7 @@ import styles from "../styles/post.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import Seo from "../components/Seo";
+import createImage from "../utils/createImage";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -118,7 +119,8 @@ const renderBlock = (block) => {
         </div>
       );
     case "image":
-      const src = value.type === "external" ? value.external.url : value.file.url;
+      let src = value.type === "external" ? value.external.url : value.file.url;
+
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
         <figure>
@@ -201,12 +203,14 @@ export default function Post({ page, blocks }) {
     return <div />;
   }
 
+  const src = page.cover.type === "external" ? page.cover.external.url : page.cover.file.url;
+
   return (
     <div>
       <Seo
         pageTitle={"jack blog"}
         pageDescription={page.properties.Name.title[0].plain_text}
-        pageImg={page.cover ? page.cover.external.url : "/home.png"}
+        pageImg={src ? src : "/home.png"}
         pageImgWidth={1200}
         pageImgHeight={600}
       />
@@ -228,7 +232,7 @@ export default function Post({ page, blocks }) {
         </div>
       </div>
       <article className={styles.container}>
-        {page.cover ? <img src={page.cover.external.url} className={styles.mainImage} /> : null}
+        {page.cover ? <img src={src} className={styles.mainImage} /> : null}
         <section className={styles.body}>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -258,10 +262,27 @@ export const getStaticProps = async (context) => {
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
+  // カバー画像が外部画像の時、publicに画像を作成
+  if (page.cover.type === "file") {
+    page.cover.file.url = await createImage(id, "cover", page.cover.file.url);
+  }
+
+  // 記事に含まれる画像が外部画像の時、publicに画像を作成
+  const updateBlocks = await Promise.all(
+    blocks.map(async (block) => {
+      if (block.type === "image") {
+        if (block.image.type === "file") {
+          block.image.file.url = await createImage(id, block.id, block.image.file.url);
+        }
+      }
+      return block;
+    })
+  );
+
   return {
     props: {
       page,
-      blocks,
+      blocks: updateBlocks,
     },
     revalidate: 1,
   };
