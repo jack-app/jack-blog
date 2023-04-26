@@ -203,7 +203,10 @@ export default function Post({ page, blocks }) {
     return <div />;
   }
 
-  const src = page.cover.type === "external" ? page.cover.external.url : page.cover.file.url;
+  let src;
+  if (page.cover) {
+    src = page.cover.type === "external" ? page.cover.external.url : page.cover.file.url;
+  }
 
   return (
     <div>
@@ -263,7 +266,7 @@ export const getStaticProps = async (context) => {
   const blocks = await getBlocks(id);
 
   // カバー画像が外部画像の時、publicに画像を作成
-  if (page.cover.type === "file") {
+  if (page.cover && page.cover.type === "file") {
     page.cover.file.url = await createImage(id, "cover", page.cover.file.url);
   }
 
