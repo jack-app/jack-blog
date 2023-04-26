@@ -32,9 +32,11 @@ export default function Home({ posts }) {
                 year: "numeric",
               });
 
-              console.log(post.cover);
-              const src =
-                post.cover.type === "external" ? post.cover.external.url : post.cover.file.url;
+              let src;
+              if (post.cover) {
+                src =
+                  post.cover.type === "external" ? post.cover.external.url : post.cover.file.url;
+              }
 
               return (
                 <Link href={`/${post.id}`} key={post.id}>
@@ -72,6 +74,8 @@ export const getStaticProps = async () => {
     database
       .filter((post) => post.properties.Publish.checkbox)
       .map(async (post) => {
+        console.log(post.cover);
+        if (post.cover === null) return post;
         if (post.cover.type === "file") {
           const newUrl = await createImage(post.id, "cover", post.cover.file.url);
           post.cover.file.url = newUrl;
