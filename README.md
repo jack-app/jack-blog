@@ -1,7 +1,3 @@
-# jack blog
+リポジトリは以下に移行しました。
 
-## overview
-
-アプリ開発団体jackのメンバーズブログです。
-
-URL：https://jackun-blog.vercel.app/
+https://github.com/jack-app/jack-blog-ts
