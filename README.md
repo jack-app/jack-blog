@@ -1,3 +1,2 @@
-リポジトリは以下に移行しました。
-
-https://github.com/jack-app/jack-blog-ts
+# Free AI at api.airforce
+https://discord.gg/AJDsM7jtbq
